@@ -90,7 +90,7 @@ let zero = " "
        let remainder2 = (Math.floor((number % 100) / 10))  * 10;
        let remainder3 = number % 10;  
 
-      else if (remainder1 >= 10 && remainder1 <= 15){
+      if (remainder1 >= 10 && remainder1 <= 15){
         return  hundredths[rounding]  + upToFifteen[remainder1]
         }
        else if (remainder1 >= 16 && remainder1 <= 19) {
