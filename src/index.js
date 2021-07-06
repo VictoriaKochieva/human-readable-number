@@ -15,6 +15,7 @@ module.exports = function toReadable(number) {
     }
    
     let teens = {
+        
         6: "six" ,
         7: "seven",
         8: "eight",
@@ -76,6 +77,8 @@ module.exports = function toReadable(number) {
         900: "nine hundred",
          0:' '
      } 
+
+
  if (number >= 1 && number <= 9){
         return upToNine[number]
     }
@@ -84,7 +87,8 @@ module.exports = function toReadable(number) {
         return upToFifteen[number]
     }
    else if (number >= 16 && number <= 19) {
-    let num = Math.floor(number / 10) * 10
+    let num = number % 10
+    if (number % 10 === 8) {return teens[num] + "een"}
         return teens[num] + "teen"
     }
    
@@ -115,7 +119,9 @@ module.exports = function toReadable(number) {
         return  hundredths[rounding] + upToFifteen[remainder1]
         }
         else if (remainder1 >= 16 && remainder1 <= 19) {
-        return  hundredths[rounding] + teens[remainder3] + "teen"
+            if (number % 10 === 8) {return hundredths[rounding] + teens[remainder3] + "een"}
+            else {return  hundredths[rounding] + teens[remainder3] + "teen"}
+        
          
         }
          else if (remainder1 >= 20 && remainder1 <= 59) { 
@@ -127,11 +133,15 @@ module.exports = function toReadable(number) {
            else {return hundredths[rounding] + `${sixtyUpToNinety[remainder2]}` + " "+ `${upToNine[remainder3]}`}
                    
        }     
-         else if (remainder4 == 0 ) {
-            return hundredths[rounding] + `${upToNine[remainder3 ]}`
+         else if (remainder4 === 0 ) {
+            return hundredths[rounding]  + `${upToNine[remainder3 ]}`
         } 
-   else if (remainder4 == 0 && number %10 ===0 ){
-       return hundredths1[rounding]
+   else if (remainder4 === 0 && number%10 ===0 ){
+       return `${hundredths1[rounding]}`
    }
-}   
+
+}   else {
+    return 'zero'
+}
+
 } 
