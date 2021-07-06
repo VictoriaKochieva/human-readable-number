@@ -91,13 +91,17 @@ module.exports = function toReadable(number) {
     else if (number >= 20 && number <= 59) {
       let remainder1  = Math.floor(number / 10) * 10;
         let remainder2  = number % 10;
-       return decimals[remainder1] + `${upToNine[remainder2]}`
+        if(remainder2 === 0 ) {return decimals[remainder1]} 
+        else { return decimals[remainder1] + " " + `${upToNine[remainder2]}`}
+      
    }
    
    else if (number >= 60 && number <= 99) {
       let remainder1 = Math.floor(number / 10) * 10;
         let remainder2  = number % 10;
-       return sixtyUpToNinety[remainder1]  + " " + `${upToNine[remainder2]}`
+        if(remainder2 === 0 ) {return sixtyUpToNinety[remainder1]} 
+        else { return sixtyUpToNinety[remainder1]+ " " + `${upToNine[remainder2]}`}
+      
    }
    
    else if (number >= 100 && number <= 999) {
