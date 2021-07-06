@@ -64,7 +64,18 @@ module.exports = function toReadable(number) {
        900: "nine hundred ",
         0:' '
     } 
-    
+    let hundredths1 = {
+        100: "one hundred" ,
+        200: "two hundred",
+        300: "three hundred",
+        400: "four hundred",
+        500: "five hundred",
+        600: "six hundred",
+        700: "seven hundred",
+        800: "eight hundred",
+        900: "nine hundred",
+         0:' '
+     } 
  if (number >= 1 && number <= 9){
         return upToNine[number]
     }
@@ -73,18 +84,18 @@ module.exports = function toReadable(number) {
         return upToFifteen[number]
     }
    else if (number >= 16 && number <= 19) {
-    let num = number % 10
+    let num = Math.floor(number / 10) * 10
         return teens[num] + "teen"
     }
    
     else if (number >= 20 && number <= 59) {
-      let remainder1  = Math.floor(number % 10) * 10;
+      let remainder1  = Math.floor(number / 10) * 10;
         let remainder2  = number % 10;
        return decimals[remainder1] + `${upToNine[remainder2]}`
    }
    
    else if (number >= 60 && number <= 99) {
-      let remainder1 = Math.floor(number % 10) * 10;
+      let remainder1 = Math.floor(number / 10) * 10;
         let remainder2  = number % 10;
        return sixtyUpToNinety[remainder1]  + " " + `${upToNine[remainder2]}`
    }
@@ -116,7 +127,7 @@ module.exports = function toReadable(number) {
             return hundredths[rounding] + `${upToNine[remainder3 ]}`
         } 
    else if (remainder4 == 0 && number %10 ===0 ){
-       return hundredths[rounding]
+       return hundredths1[rounding]
    }
 }   
 } 
